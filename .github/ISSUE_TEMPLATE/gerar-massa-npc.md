@@ -46,3 +46,10 @@ assignees: ''
 - [ ] Low
 - [ ] Medium
 - [ ] High
+
+### Category
+<select>
+  <option value="bug">Bug</option>
+  <option value="feature">Feature Request</option>
+  <option value="enhancement">Enhancement</option>
+</select>
