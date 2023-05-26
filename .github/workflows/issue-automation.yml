@@ -1,0 +1,27 @@
+name: Issue Automation
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  run-job-on-issue-open:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract issue data
+        id: extract
+        run: |
+          echo "::set-output name=title::${{ github.event.issue.title }}"
+          echo "::set-output name=body::${{ github.event.issue.body }}"
+          echo "::set-output name=category::${{ steps.extract.outputs.category }}"
+          
+      - name: Use issue data in job
+        run: |
+          echo "Issue Title: ${{ steps.extract.outputs.title }}"
+          echo "Issue Body: ${{ steps.extract.outputs.body }}"
+          echo "Category: ${{ steps.extract.outputs.category }}"
+          # Use the extracted data in your job
